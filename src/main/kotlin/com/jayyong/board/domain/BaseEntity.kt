@@ -1,12 +1,11 @@
 package com.jayyong.board.domain
 
 import jakarta.persistence.MappedSuperclass
-import org.springframework.data.annotation.CreatedBy
 import java.time.LocalDateTime
 
 @MappedSuperclass
 abstract class BaseEntity(
-    createdBy: String
+    createdBy: String,
 ) {
     val createdBy: String = createdBy
     val createdAt: LocalDateTime = LocalDateTime.now()
@@ -15,7 +14,7 @@ abstract class BaseEntity(
     var updatedAt: LocalDateTime? = null
         protected set
 
-    fun update(updatedBy: String){
+    fun updatedBy(updatedBy: String) {
         this.updatedBy = updatedBy
         this.updatedAt = LocalDateTime.now()
     }

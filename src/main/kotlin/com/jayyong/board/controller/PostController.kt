@@ -1,6 +1,7 @@
 package com.jayyong.board.controller
 
 import com.jayyong.board.controller.dto.*
+import com.jayyong.board.service.PostService
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -14,48 +15,49 @@ import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDateTime
 
 @RestController
-class PostController {
+class PostController(
+    private val postService: PostService,
+) {
     @PostMapping("/posts")
     fun createPost(
         @RequestBody postCreateRequest: PostCreateRequest,
     ): Long {
-        return 1L
+        return postService.createPost(postCreateRequest.toDto())
     }
 
     @PutMapping("/posts/{id}")
     fun updatePost(
         @PathVariable id: Long,
-        @RequestBody postUpdateRequest: PostUpdateRequest
+        @RequestBody postUpdateRequest: PostUpdateRequest,
     ): Long {
-        return id
+        return postService.updatePost(id, postUpdateRequest.toDto())
     }
 
     @DeleteMapping("/posts/{id}")
     fun deletePost(
         @PathVariable id: Long,
-        @RequestParam createdBy: String
+        @RequestParam createdBy: String,
     ): Long {
-        println(createdBy)
-        return id
+        return postService.deletePost(id = id, deletedBy = createdBy)
     }
 
     @GetMapping("/posts/{id}")
     fun getPost(
-        @PathVariable id: Long
+        @PathVariable id: Long,
     ): PostDetailResponse {
         return PostDetailResponse(
-            id=1L,
-            title="title",
-            content="content",
-            createdBy="createdBy",
-            createdAt=LocalDateTime.now().toString(),
+            id = 1L,
+            title = "title",
+            content = "content",
+            createdBy = "createdBy",
+            createdAt = LocalDateTime.now().toString()
         )
     }
 
     @GetMapping("/posts")
     fun getPosts(
         pageable: Pageable,
-        postSearchRequest: PostSearchRequest
+        postSearchRequest: PostSearchRequest,
     ): Page<PostSummaryResponse> {
         return Page.empty()
     }
