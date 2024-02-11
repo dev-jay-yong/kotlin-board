@@ -44,7 +44,7 @@ jobs:
       with:
         aws_access_key: ${{ secrets.AWS_ACCES_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SCRET_ACCES_KEY }}
-        resion: ${{ env.AWS_REGION }}
+        region: ${{ env.AWS_REGION }}
         application_name: kotlin-board
         environment_name: Kotlin-board-env
         version_label: github-action-${{steps.current-time.outputs.formattedTime}}
