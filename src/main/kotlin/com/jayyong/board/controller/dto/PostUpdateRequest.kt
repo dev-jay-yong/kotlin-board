@@ -8,8 +8,4 @@ data class PostUpdateRequest(
     var updatedBy: String,
 )
 
-fun PostUpdateRequest.toDto() = PostUpdateRequestDto(
-    title = title,
-    content = content,
-    updatedBy = updatedBy,
-)
+fun PostUpdateRequest.toDto() = PostUpdateRequestDto(title = title, content = content, updatedBy = updatedBy)

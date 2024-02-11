@@ -50,7 +50,7 @@ class PostController(
             title = "title",
             content = "content",
             createdBy = "createdBy",
-            createdAt = LocalDateTime.now().toString(),
+            createdAt = LocalDateTime.now().toString()
         )
     }
 
