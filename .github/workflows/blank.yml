@@ -38,7 +38,6 @@ jobs:
         mkdir -p deploy
         cp build/libs/*.jar deploy/application.jar
         cd deploy && zip -r deploy.zip .
-
     - name: Beanstalk Deploy
       uses: einaregilsson/beanstalk-deploy@v21
       with:
