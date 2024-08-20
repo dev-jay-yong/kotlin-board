@@ -30,7 +30,7 @@ jobs:
       uses: 1466587594/get-current-time@v2
       id: current-time
       with:
-        format: YYYY-MM-DDTMM-mm-ss
+        format: YYYY-MM-DDTHH-mm-ss
         utcOffset: "+09:00"
 
     - name: Generate deployment package
@@ -45,7 +45,7 @@ jobs:
         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         region: ${{ env.AWS_REGION }}
-        application_name: kotlin-board
+        application_name: first-kotlin-board
         environment_name: First-Kotlin-board-env
         version_label: github-action-${{steps.current-time.outputs.formattedTime}}
         deployment_package: deploy/deploy.zip
